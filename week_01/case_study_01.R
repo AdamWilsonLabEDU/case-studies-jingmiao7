@@ -48,25 +48,30 @@ ggplot(data = iris, aes(x = Petal.Length, y = after_stat(density))) +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
   geom_density(color = "green", linewidth = 1)
 
+# change number of bins by changing the width of it
 ggplot(data = iris, aes(x = Petal.Length, y = after_stat(density))) +
   geom_histogram(boundary = 0.5) +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
   geom_density(color = "green", linewidth = 1)
 
+#change the colors of the background and the bins
 ggplot(data = iris, aes(x = Petal.Length, y = after_stat(density))) +
   geom_histogram(bins = 50, color = "white", fill = "blue") +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
   geom_density(color = "green", linewidth = 1)
 
+# import the factor "Species" from data_iris
 data_iris <- iris |>
   mutate(Species = factor(Species))
 
+# group it by factor "species"
 ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(density), fill = Species)) +
   geom_histogram(bins = 50, color = "white", fill = "blue") +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
   geom_density(color = "gray", linewidth = 1)+
   labs(x ='Length of Petal (cm)', y='Count', title = 'Petal Length Distributions')
 
+# Add the range of x using xlin()
 ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(density), fill = Species)) +
   geom_histogram(bins = 50, color = "white", fill = "blue") +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
@@ -74,11 +79,14 @@ ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(density), fill = S
   labs(x ='Length of Petal (cm)', y='Count', title = 'Petal Length Distributions') +
   xlim(0, 8)
 
-ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(density), fill = Species)) +
+# adjust the position of the legend and separate the three species into three graphs
+
+PetalPlot <- ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(density), fill = Species)) +
   geom_histogram(bins = 50, color = "white", fill = "blue") + facet_grid(vars(Species)) +
   geom_vline(aes(xintercept = mean_length), length_stats, color = "red", linewidth = 1) +
-  geom_density(color = "gray", linewidth = 1)+
-  labs(x ='Length of Petal (cm)', y='Count', title = 'Petal Length Distributions') +
+  geom_density(color = "gray", linewidth = 1, alpha = 0.5)+
+  labs(x ='Length of Petal (cm)', y='Count', title = 'Petal length distributions of three species', caption = "Data Resource: iris (https://rpubs.com/moeransm/intro-iris)") +
   xlim(0, 8) +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
+ggsave("Petal_Length_Distributions.png", plot = PetalPlot, width = 8, height = 6, dpi = 300)
