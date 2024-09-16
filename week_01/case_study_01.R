@@ -89,4 +89,5 @@ PetalPlot <- ggplot(data = data_iris, aes(x = Petal.Length, y = after_stat(densi
   xlim(0, 8) +
   theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5), plot.subtitle = element_text(hjust = 0.5))
 
+# save plot result
 ggsave("Petal_Length_Distributions.png", plot = PetalPlot, width = 8, height = 6, dpi = 300)
