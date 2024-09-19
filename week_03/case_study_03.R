@@ -1,15 +1,17 @@
-install.packages("gapminder")
+install.packages("gapminder") # install dataset "gapminder"
 
-library(ggplot2)
-library(gapminder)
-library(dplyr)
+library(ggplot2) # load ggplot
+library(gapminder) # load gapminder dataset
+library(dplyr) #load the dplyr to use summarize
 
 gapminder
-str(gapminder)
+str(gapminder) # check the structure of the gapminder
 
+# remove the "Kuwait" from the dataset
 NoK_gapminder <- gapminder %>%
   filter(country != "Kuwait")
 
+# plot a scatter point of life expetation and gdp with theme_bw, and other co
 ggplot(NoK_gapminder, aes(x = lifeExp, y = gdpPercap, color = continent, size = pop/100000)) +
   geom_point() +
   theme_bw() +
