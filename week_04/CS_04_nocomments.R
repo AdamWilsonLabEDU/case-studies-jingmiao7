@@ -59,5 +59,4 @@ airport_delay_data %>%
   scale_color_gradient2(low = "#3575B3", mid = "white", high = "#BF3935", midpoint = 10, na.value = "grey50") +  # Color gradient with hex codes
   coord_quickmap(xlim = c(-125, -65), ylim = c(20, 50)) +
   labs(color = "Avg Delay (min)") +  # label for the color legend
-  theme_minimal()  # use a minimal theme for better visibility
-
+  theme_minimal()  # use a minimal theme
