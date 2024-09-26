@@ -12,13 +12,13 @@ str(flights)
 
 glimpse(weather)
 glimpse(airlines)
-view(airports)
+glimpse(airports)
 glimpse(planes)
 #name, distance, and destination come from flights(distance,origin and dest),ffa and name come from airports 
 
 # find the farthest airport code from the New York Airports (JFK, LGA, EWR)
 farthest_airport_code <- flights %>%
-  filter(origin %in% c("JFK", "LGA", "EWR")) %>%
+  filter(origin == "JFK" | origin == "LGA" | origin == "EWR") %>% #filter(origin %in% c("JFK", "LGA", "EWR"))
   arrange(desc(distance)) %>%
   slice(1) %>%
   select(dest)
@@ -36,11 +36,11 @@ farthest_airport
 
 
 airports %>%
-  distinct(lon,lat) %>%
+  distinct(lon,lat) %>% # Keep only unique/distinct rows from a data frame.it's similar to  unique.data.frame() but considerably faster
   ggplot(aes(lon, lat)) +
   borders("world") +
   geom_point(col="red") +
-  coord_quickmap()
+  coord_quickmap() # projects a portion of the earth
 
 # calculate the average delay per airport (destination)
 avg_delay_per_airport <- flights %>%
