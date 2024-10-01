@@ -4,6 +4,7 @@
 library(tidyverse)
 library(nycflights13)
 library(dplyr)
+
 #check the contents of this dataset
 head(flights)
 glimpse(flights)
@@ -14,7 +15,7 @@ glimpse(weather)
 glimpse(airlines)
 glimpse(airports)
 glimpse(planes)
-#name, distance, and destination come from flights(distance,origin and dest),ffa and name come from airports 
+#name, distance, and destination come from flights(distance,origin and dest),faa and name come from airports 
 
 # find the farthest airport code from the New York Airports (JFK, LGA, EWR)
 farthest_airport_code <- flights %>%
@@ -40,7 +41,7 @@ airports %>%
   ggplot(aes(lon, lat)) +
   borders("world") +
   geom_point(col="red") +
-  coord_quickmap() # projects a portion of the earth
+  coord_quickmap() # project a portion of the earth
 
 # calculate the average delay per airport (destination)
 avg_delay_per_airport <- flights %>%
@@ -56,7 +57,9 @@ airport_delay_data %>%
   ggplot(aes(lon, lat, color = avg_delay)) +
   borders("usa") +
   geom_point(size = 3) +  # plot points for airports 
-  scale_color_gradient2(low = "#3575B3", mid = "white", high = "#BF3935", midpoint = 10, na.value = "grey50") +  # Color gradient with hex codes
+  scale_color_gradient2(low = "#3575B3", mid = "white", high = "#BF3935", midpoint = 10, na.value = "grey50") +  # Color gradient with hex codes 
   coord_quickmap(xlim = c(-125, -65), ylim = c(20, 50)) +
   labs(color = "Avg Delay (min)") +  # label for the color legend
   theme_minimal()  # use a minimal theme
+
+#other functions to design the color scheme: scale_color_gradient();scale_color_gradientn(); scale_color_viridis_c(); scale_color_distiller()
