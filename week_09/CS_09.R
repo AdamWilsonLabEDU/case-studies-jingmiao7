@@ -30,12 +30,12 @@ region <- st_bbox(storm_sf)
 
 # plot
 ggplot(data = world) +
-  geom_sf(fill = "lightgray", color = "white") +                         # Plot world polygons
+  geom_sf(fill = "lightgray", color = "white") +                         
   geom_sf(data = storm_sf, alpha = 0.2) +    # Plot storm points
   stat_bin2d(data = storm_sf, aes(x = st_coordinates(storm_sf)[,1],      # Add storm density
                                   y = st_coordinates(storm_sf)[,2]), 
              bins = 100) +
-  scale_fill_distiller(palette = "YlOrRd", trans = "log",                # Color ramp with log scale
+  scale_fill_distiller(palette = "YlOrRd", trans = "log",                
                        direction = -1, breaks = c(1, 10, 100, 1000)) +
   facet_wrap(~decade) +                                                  # Facet by decade
   coord_sf(xlim = region[c("xmin", "xmax")],                             # Crop plot to bounding box
