@@ -1,0 +1,74 @@
+---
+title: "Case Study 8"
+format:
+  html: default
+  pdf: default
+  revealjs: default
+  # pptx: default
+  # docx: default
+  # gfm: default
+echo: true
+editor: visual
+author: Jing Miao
+date: 10/24/2024
+---
+
+## Installation
+
+```{r}
+#| warning = FALSE
+
+# install and load the necessary packages
+# install.packages("kableExtra") # for table
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+```
+
+## Data
+
+```{r}
+# Download the data and save it.
+annualCO2 <- read.table("ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_annmean_mlo.txt", skip = 43, col_names = c("year", "mean", "anc"))
+annualCO2_2 <- readr::read_table("ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_annmean_mlo.txt", skip = 44, )
+
+colnames(annualCO2) <- c("year", "mean", "anc")
+```
+
+## Plot
+
+```{r}
+#| warning: FALSE
+
+# Create the time series plot using ggplot2
+ggplot(data = annualCO2, aes(x = year, y = mean)) +
+  geom_line(color = "red", size = 2) +            
+  labs(title = "CO2 Levels Over Time",
+       x = "Year",
+       y = "Mean CO2 Concentration (ppm)") +
+  theme_minimal()
+```
+
+## Table
+
+```{r}
+#| warning: FALSE
+
+# print the top five of the table
+
+table <- annualCO2 %>%
+  arrange(desc(mean)) %>%
+  slice_head(n = 5)
+
+knitr::kable(table) %>%
+  kable_styling(position = "center")
+
+# knitr::kable(table) %>%
+  #as_image(width = 10,file = "table.png")
+```
+
+```{r}
+# render all the formats
+# quarto::quarto_render("E:\\repos\\case-studies-jingmiao7\\week_08\\case_study_08.qmd", output_format = "all")
+```
