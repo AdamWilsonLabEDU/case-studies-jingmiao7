@@ -16,7 +16,7 @@ getDoParWorkers() # check registered cores
 
 # load the tidycensus and read the oersonal key to use api
 library(tidycensus)
-census_api_key("60986de2c2c33c7beb144d5aed62a15407826fd9")
+census_api_key("MY CENSUS API KEY")
 
 #read all the data into the race_vars
 race_vars <- c(
@@ -56,5 +56,5 @@ erie_cropped_filtered <- foreach(race = levels(erie_cropped$variable), .combine 
     mutate(variable = race)                # add a column for the racial group
 }
 
-# map it
+# map the points
 mapview(erie_cropped_filtered, zcol = "variable", cex = 2)
