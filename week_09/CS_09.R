@@ -63,7 +63,7 @@ top_states <- storm_states %>%
   summarize(storm_sf = length(unique(NAME))) %>% # summarize by unique name in storm_sf
   arrange(desc(storm_sf)) %>% # arrange table by storm_sf
   slice(1:5) %>% # pick top 5
-  st_drop_geometry() # ingore geometry in table
+  st_drop_geometry() # ignore geometry in table
 
 # print table
 top_states
