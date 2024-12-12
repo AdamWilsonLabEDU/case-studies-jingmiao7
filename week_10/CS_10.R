@@ -1,28 +1,3 @@
-#' ---
-#' title: Satellite Remote Sensing
-#' subtitle: Analyze Satellite Data
-#' week: 10
-#' type: Case Study
-#' reading:
-#' tasks:
-#'    - Extract a timeseries from a single location in a netcdf file (part 1)
-#'    - Calculate a monthly climatology from a weekely timeseries (part 2)
-#'    - Summarize Land Surface Temperature by Land Cover (part 3)
-#' ---
-#' 
-
-#' 
-#' # Tasks
-#' 
-
-#' 
-#' 
-#' [<i class="fa fa-file-code-o fa-3x" aria-hidden="true"></i> The R Script associated with this page is available here](`r output`).  If you like, you can download this file and open it (or copy-paste into a new script) with RStudio so you can follow along.  
-#' 
-#' 
-#' ### Libraries
-#' 
-## ----results='hide',message=FALSE, warning=F----------------------------------
 # install.packages("rasterVis")
 # install.packages("ggmap")
 library(terra)
@@ -415,27 +390,3 @@ lcds2 %>%
   ylab("Monthly Mean Land Surface Temperature (C)")+
   xlab("Month")+
   ggtitle("Land Surface Temperature in Urban and Forest areas in Buffalo, NY")
-
-#' 
-#' 
-#' 
-#' <div class="well">
-#' 
-#' If you have extra time, try to reproduce the table in this box.
-#' 
-#' <button data-toggle="collapse" class="btn btn-primary btn-sm round" data-target="#demo5">Extra time?</button>
-#' <div id="demo5" class="collapse">
-#' 
-#' This is a more complicated table which involves using the `zonal` function to aggregate, followed by `gather`ing, `spread`ing, and creative `paste`ing to combine text fields.
-#' 
-
-#' 
-
-#' 
-#' 
-#' 
-
-#' 
-#' </div>
-#' </div>
-#' 
